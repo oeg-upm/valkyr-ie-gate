@@ -38,6 +38,7 @@ import es.upm.oeg.valkyrie.gate.lr.GateCorpus;
 import es.upm.oeg.valkyrie.gate.lr.GateDocument;
 import es.upm.oeg.valkyrie.gate.pr.GateFactoryInterface;
 import es.upm.oeg.valkyrie.gate.pr.GatePipeline;
+import es.upm.oeg.valkyrie.web.model.Feature;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -302,9 +303,18 @@ public class ServicesController {
             logger.info(entityType);
 
             for (Annotation annot : doc.getAnnotations(entityType, "")) {
-
+                List <Feature> featuresList=new ArrayList();
+                
+                for (Object key: annot.getFeatures().keySet()) {
+                    String na= (String) key;
+                    String val= (String) annot.getFeatures().get(key);
+                    featuresList.add(new Feature(na,val));
+                    
+                }
+                
                 //DetectedEntities.add(doc.getStringAnnotation(annot)+":"+annot.getStartNode().getOffset().toString()+":"+annot.getEndNode().getOffset().toString()+":"+entityType);
                 Entity en = new Entity(entityType, doc.getStringAnnotation(annot), annot.getStartNode().getOffset().intValue(), annot.getEndNode().getOffset().intValue());
+                en.setFeatures(featuresList);
                 output.getAnnotations().add(en);
 
             }

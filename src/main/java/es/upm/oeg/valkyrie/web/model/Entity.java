@@ -5,6 +5,8 @@
  */
 package es.upm.oeg.valkyrie.web.model;
 
+import java.util.List;
+
 /**
  *
  * @author Pablo
@@ -15,6 +17,10 @@ public class Entity {
     private String Text;
     private int Init;
     private int End;
+    
+    private List<Feature> Features;
+    
+    
     
     public Entity(String Type, String Text, int Init,int End){
     
@@ -55,6 +61,14 @@ public class Entity {
 
     public void setEnd(int End) {
         this.End = End;
+    }
+
+    public List<Feature> getFeatures() {
+        return Features;
+    }
+
+    public void setFeatures(List<Feature> Features) {
+        this.Features = Features;
     }
     
     

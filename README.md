@@ -27,12 +27,12 @@ This is the configurable file in which you declare the processes to be executed 
 
 ## Install and Compile
 
-For install and compile just:
+To install and compile just type:
 ```
 mvn clean install
 ```
 
-The folder of config will be deployed in the same directory
+The  config folder will be deployed in the same directory
 
 ## Execute
 
@@ -46,3 +46,15 @@ Morevover, you can declare multiple instances in different ports
 java -jar -Dserver.port=8084 target/valkyr-ie-gate-1.0.jar      
 ```
 
+## Run through Docker:
+
+First build the image (remember to COPY the config folder you want to use in the target directory):
+```
+docker build -t valkyre .
+```
+
+And then just run:
+```
+docker run --rm -p 8080:8080 valkyre:latest
+```
+to start a new instance of Valkyre-ie.
